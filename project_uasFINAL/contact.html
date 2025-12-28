@@ -21,11 +21,10 @@
         }
 
         .main {
-            width: 100%;
             max-width: 400px;
-            height: 450px;
-            background: rgba(255,255,255,0.9);
-            box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+            height: 480px;
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 8px 20px rgba(0,0,0,.15);
             padding-top: 20px;
             border-radius: 15px;
             margin: auto;
@@ -63,16 +62,26 @@
         }
 
         .sm {
-            padding: 1.5rem 0;
+            padding-top: 15px;
         }
 
         .sm li {
+            list-style: none;
             display: inline-block;
-            margin: 0 6px;
+            margin: 0 8px;
         }
 
         .sm img {
-            width: 26px;
+            width: 28px;
+        }
+
+        .contact-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -85,21 +94,11 @@
         <a class="navbar-brand text-success fw-bold" href="index.html">
             <i class="bi bi-recycle"></i> EcoCraft Store
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="nav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                <li class="nav-item"><a class="nav-link fw-bold text-success active" href="#">Kontak</a></li>
-            </ul>
-        </div>
     </div>
 </nav>
 
-<!-- CONTENT -->
 <main class="container my-5">
+
     <h2 class="text-success fw-bold mb-4">Tim Kami</h2>
 
     <!-- TEAM -->
@@ -112,6 +111,10 @@
                 <h2>Nurul Fikri</h2>
                 <h2>Sistem Informasi</h2>
                 <p>0010125062</p>
+                <ul class="sm">
+                    <li><a href="https://wa.me/6289687231733" target="_blank"><img src="img/wa.png"></a></li>
+                    <li><a href="https://www.instagram.com/popicecoklat_19" target="_blank"><img src="img/ig.png"></a></li>
+                </ul>
             </div>
         </div>
 
@@ -122,6 +125,10 @@
                 <h2>Nurul Fikri</h2>
                 <h2>Sistem Informasi</h2>
                 <p>0110125068</p>
+                <ul class="sm">
+                    <li><a href="https://wa.me/6289653713432" target="_blank"><img src="img/wa.png"></a></li>
+                    <li><a href="https://www.instagram.com/nadiaajengg" target="_blank"><img src="img/ig.png"></a></li>
+                </ul>
             </div>
         </div>
 
@@ -132,6 +139,10 @@
                 <h2>Nurul Fikri</h2>
                 <h2>Sistem Informasi</h2>
                 <p>0110125081</p>
+                <ul class="sm">
+                    <li><a href="https://wa.me/62085882197236" target="_blank"><img src="img/wa.png"></a></li>
+                    <li><a href="https://www.instagram.com/np_xalien" target="_blank"><img src="img/ig.png"></a></li>
+                </ul>
             </div>
         </div>
 
@@ -142,13 +153,19 @@
                 <h2>Nurul Fikri</h2>
                 <h2>Sistem Informasi</h2>
                 <p>0110125036</p>
+                <ul class="sm">
+                    <li><a href="https://wa.me/62087718711471" target="_blank"><img src="img/wa.png"></a></li>
+                    <li><a href="https://www.instagram.com/ratuuu____4" target="_blank"><img src="img/ig.png"></a></li>
+                </ul>
             </div>
         </div>
 
     </div>
 
-    <!-- FEEDBACK FORM -->
+    <!-- FEEDBACK & INFO -->
     <div class="row mt-5">
+
+        <!-- FEEDBACK -->
         <div class="col-md-7">
             <div class="p-4 bg-white rounded shadow">
                 <h4 class="text-success mb-3">Form Feedback Pengguna</h4>
@@ -198,24 +215,41 @@
             </div>
         </div>
 
+        <!-- INFO KONTAK -->
         <div class="col-md-5 mt-4 mt-md-0">
             <div class="p-4 bg-light rounded shadow">
                 <h4 class="text-success">Informasi Kontak</h4>
-                <p><i class="bi bi-geo-alt-fill text-success"></i> Jl. Daur Ulang No.12</p>
-                <p><i class="bi bi-telephone-fill text-success"></i> (021) 123-4567</p>
-                <p><i class="bi bi-envelope-fill text-success"></i> info@ecocraft.com</p>
+
+                <p>
+                    <i class="bi bi-geo-alt-fill text-success"></i>
+                    <a href="https://maps.app.goo.gl/XpuSzYkKqpVnxXFv6?g_st=aw"
+                       target="_blank"
+                       class="contact-link">
+                        Jl. Daur Ulang No.12
+                    </a>
+                </p>
+
+                <p>
+                    <i class="bi bi-telephone-fill text-success"></i>
+                    (021) 123-4567
+                </p>
+
+                <p>
+                    <i class="bi bi-envelope-fill text-success"></i>
+                    <a href="mailto:mrfaridadnan@gmail.com" class="contact-link">
+                        EcoCraft@gmail.com
+                    </a>
+                </p>
             </div>
         </div>
+
     </div>
 </main>
 
-<!-- SCRIPT ALERT -->
 <script>
     document.getElementById("feedbackForm").addEventListener("submit", function(e) {
         e.preventDefault();
-
         alert("✅ Terima kasih! Feedback Anda berhasil dikirim.");
-
         this.reset();
     });
 </script>

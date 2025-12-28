@@ -199,7 +199,7 @@ categoryButtons.forEach(button => {
 
     document.getElementById('add-to-cart-btn').onclick = addToCart;
 
-    // 🔥 KLIK IKON KERANJANG
+    //  KLIK IKON KEARANJANG
     const cartBtn = document.getElementById('cart-btn');
     if (cartBtn) {
         cartBtn.addEventListener('click', goToCart);

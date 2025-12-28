@@ -2,315 +2,108 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keranjang Belanja - EcoCraft</title>
+    <title>Keranjang Belanja</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .cart-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .cart-item {
-            background: white;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border-left: 4px solid #28a745;
-        }
-        .cart-item:hover {
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .product-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .product-img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #dee2e6;
-        }
-        .quantity-control {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .quantity-btn {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-        .remove-btn {
-            color: #dc3545;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .remove-btn:hover {
-            transform: scale(1.1);
-        }
-        .empty-cart {
-            text-align: center;
-            padding: 60px 20px;
-            color: #6c757d;
-        }
-        .empty-cart i {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            opacity: 0.3;
-        }
-        .back-to-shop {
-            color: #28a745;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .back-to-shop:hover {
-            text-decoration: underline;
-        }
-        .checkout-btn {
-            font-size: 1.1rem;
-            padding: 12px 30px;
-            font-weight: 600;
-        }
-        .cart-summary {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-top: 30px;
-        }
-        .header-nav {
-            background: white !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-    </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light header-nav sticky-top">
-        <div class="container">
-            <a class="navbar-brand text-success fw-bold fs-4" href="index.html">
-                <i class="bi bi-recycle"></i> EcoCraft Store
-            </a>
-            <div class="d-flex">
-                <a href="index.html" class="btn btn-outline-success me-2">
-                    <i class="bi bi-arrow-left"></i> Kembali Belanja
-                </a>
-                <div id="cart-btn" class="btn btn-success">
-                    <i class="bi bi-bag"></i> Keranjang
-                </div>
-            </div>
-        </div>
-    </nav>
+<div class="container my-5">
+    <h2 class="mb-4 text-success fw-bold">🛒 Keranjang Belanja</h2>
 
-    <div class="container cart-container">
-        <h2 class="mb-4 text-success fw-bold">
-            <i class="bi bi-cart3 me-2"></i>Keranjang Belanja
-        </h2>
+    <table class="table table-bordered">
+        <thead class="table-success">
+            <tr>
+                <th>Produk</th>  
+                <th>Harga</th>
+                <th>Qty</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody id="cart-body"></tbody>
+    </table>
 
-        <!-- Cart Items List -->
-        <div id="cart-items-container">
-            <!-- Items will be rendered here by JavaScript -->
-        </div>
+    <h4 class="text-end">Total: <span id="cart-total">Rp 0</span></h4>
 
-        <!-- Empty Cart Message -->
-        <div id="empty-cart-message" class="empty-cart" style="display: none;">
-            <i class="bi bi-cart-x"></i>
-            <h4 class="mb-3">Keranjang Belanjamu Masih Kosong</h4>
-            <p class="mb-4">Yuk, temukan produk ramah lingkungan yang menarik!</p>
-            <a href="index.html" class="btn btn-success">
-                <i class="bi bi-shop me-2"></i>Mulai Belanja
-            </a>
-        </div>
-
-        <!-- Cart Summary -->
-        <div id="cart-summary" class="cart-summary" style="display: none;">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="mb-0">Total Barang: <span id="total-items" class="text-success">0</span></h5>
-                <h5 class="mb-0">Total Harga: <span id="total-price" class="text-success">Rp 0</span></h5>
-            </div>
-            <hr>
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <p class="text-muted mb-0"><small>Gratis ongkir untuk pembelian di atas Rp 100.000</small></p>
-                </div>
-                <button class="btn btn-success btn-lg checkout-btn" onclick="checkoutWhatsapp()">
-                    <i class="bi bi-whatsapp me-2"></i>Checkout via WhatsApp
-                </button>
-            </div>
-        </div>
+    <div class="text-end mt-4">
+        <button class="btn btn-success btn-lg" onclick="checkoutWhatsapp()">
+            Checkout via WhatsApp
+        </button>
     </div>
+</div>
 
-    <script>
-        // cart.js - Script untuk halaman keranjang (list version)
+<script>
+    
+    // Format mata uang 
+    const formatter = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0
+    });
 
-        const formatter = new Intl.NumberFormat('id-ID', {
-            style: 'currency',
-            currency: 'IDR',
-            minimumFractionDigits: 0
+    //  keranjang dari localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // fungsi render tabel keranjang
+    function renderCart() {
+        const cartBody = document.getElementById('cart-body');
+        const cartTotal = document.getElementById('cart-total');
+        if (!cartBody || !cartTotal) return;
+
+        // Debug: Lihat isi keranjang di console
+        console.log('Cart items:', cart);
+        
+        cartBody.innerHTML = '';  
+        let total = 0;
+
+        cart.forEach(item => {
+            const subtotal = item.price * item.qty;
+            total += subtotal;
+
+            // Debug: Cek setiap item di console
+            console.log(`Item: ${item.name}, Image: ${item.image}, Image exists: ${!!item.image}`);
+
+            //  render gambar + nama produk
+            cartBody.innerHTML += `
+                <tr>
+                    <td>
+                        <img src="${item.image}" alt="${item.name}" 
+                             class="img-thumbnail me-2" 
+                             style="width: 50px; height: 50px; object-fit: cover;"
+                             onerror="this.onerror=null; this.src='https://via.placeholder.com/50/cccccc/999999?text=No+Image';">
+                        ${item.name}
+                    </td>
+                    <td>${formatter.format(item.price)}</td>
+                    <td>${item.qty}</td>
+                    <td>${formatter.format(subtotal)}</td>
+                </tr>
+            `;
         });
 
-        // Muat keranjang dari localStorage
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        // Update total keseluruhan
+        cartTotal.textContent = formatter.format(total);
+    }
 
-        // Fungsi untuk merender daftar item keranjang
-        function renderCartItems() {
-            const container = document.getElementById('cart-items-container');
-            const emptyMessage = document.getElementById('empty-cart-message');
-            const cartSummary = document.getElementById('cart-summary');
-            const totalItemsElement = document.getElementById('total-items');
-            const totalPriceElement = document.getElementById('total-price');
-
-            if (cart.length === 0) {
-                emptyMessage.style.display = 'block';
-                cartSummary.style.display = 'none';
-                container.innerHTML = '';
-                return;
-            }
-
-            emptyMessage.style.display = 'none';
-            cartSummary.style.display = 'block';
-
-            container.innerHTML = '';
-            let totalItems = 0;
-            let totalPrice = 0;
-
-            cart.forEach((item, index) => {
-                totalItems += item.qty;
-                const subtotal = item.price * item.qty;
-                totalPrice += subtotal;
-
-                const itemElement = document.createElement('div');
-                itemElement.className = 'cart-item';
-                itemElement.innerHTML = `
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <div class="product-info">
-                                <img src="${item.image}" alt="${item.name}" 
-                                     class="product-img"
-                                     onerror="this.onerror=null; this.src='https://via.placeholder.com/60/cccccc/999999?text=No+Image';">
-                                <div>
-                                    <h6 class="mb-1 text-success">${item.name}</h6>
-                                    <p class="mb-0 fw-bold text-danger">${formatter.format(item.price)}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="quantity-control">
-                                <button class="btn btn-outline-secondary btn-sm quantity-btn" onclick="updateQuantity(${index}, -1)">
-                                    <i class="bi bi-dash"></i>
-                                </button>
-                                <span class="fw-bold fs-5">${item.qty}</span>
-                                <button class="btn btn-outline-secondary btn-sm quantity-btn" onclick="updateQuantity(${index}, 1)">
-                                    <i class="bi bi-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-md-2 text-end">
-                            <div class="mb-2">
-                                <h6 class="text-success fw-bold">${formatter.format(subtotal)}</h6>
-                            </div>
-                            <div>
-                                <span class="remove-btn" onclick="removeItem(${index})" title="Hapus dari keranjang">
-                                    <i class="bi bi-trash"></i> Hapus
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(itemElement);
-            });
-
-            // Update summary
-            totalItemsElement.textContent = totalItems;
-            totalPriceElement.textContent = formatter.format(totalPrice);
+    // Fungsi checkout via WhatsApp (contoh sederhana)
+    function checkoutWhatsapp() {
+        if (cart.length === 0) {
+            alert('Keranjang kosong!');
+            return;
         }
 
-        // Fungsi untuk update kuantitas
-        function updateQuantity(index, change) {
-            const newQty = cart[index].qty + change;
-            
-            if (newQty < 1) {
-                removeItem(index);
-                return;
-            }
-            
-            cart[index].qty = newQty;
-            saveCart();
-            renderCartItems();
-        }
-
-        // Fungsi untuk menghapus item
-        function removeItem(index) {
-            if (confirm('Apakah Anda yakin ingin menghapus item ini dari keranjang?')) {
-                cart.splice(index, 1);
-                saveCart();
-                renderCartItems();
-                updateCartIcon();
-            }
-        }
-
-        // Fungsi untuk menyimpan keranjang ke localStorage
-        function saveCart() {
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
-
-        // Fungsi untuk update icon keranjang di halaman lain
-        function updateCartIcon() {
-            const total = cart.reduce((sum, item) => sum + item.qty, 0);
-            // Update cart count in index.html if exists
-            const cartCountElement = document.getElementById('cart-count');
-            if (cartCountElement) {
-                cartCountElement.textContent = total;
-            }
-            // Update cart button in cart.html
-            const cartBtn = document.getElementById('cart-btn');
-            if (cartBtn) {
-                cartBtn.innerHTML = `<i class="bi bi-bag"></i> (${total})`;
-            }
-        }
-
-        // Fungsi checkout via WhatsApp
-        function checkoutWhatsapp() {
-            if (cart.length === 0) {
-                alert('Keranjang kosong!');
-                return;
-            }
-
-            let message = 'Halo EcoCraft Store, saya ingin memesan produk berikut:\n\n';
-            
-            cart.forEach((item, index) => {
-                message += `${index + 1}. *${item.name}*\n`;
-                message += `   Qty: ${item.qty}\n`;
-                message += `   Harga: ${formatter.format(item.price)}/pcs\n`;
-                message += `   Subtotal: ${formatter.format(item.price * item.qty)}\n\n`;
-            });
-
-            const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-            message += `📦 *Total Pesanan:* ${formatter.format(total)}\n`;
-            message += `\nNama: \nAlamat: \nNo. HP: \n\n_Silahkan lengkapi data di atas untuk proses pengiriman_`;
-
-            const whatsappUrl = `https://wa.me/6289687231733?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-        }
-
-        // Initialize cart when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            renderCartItems();
-            updateCartIcon();
+        let message = 'Halo, saya ingin memesan:\n';
+        cart.forEach(item => {
+            message += `- ${item.name} (Qty: ${item.qty}) - ${formatter.format(item.price * item.qty)}\n`;
         });
-    </script>
+        message += `Total: ${formatter.format(cart.reduce((sum, item) => sum + item.price * item.qty, 0))}`;
+
+        const whatsappUrl = `https://wa.me/6289687231733?text=${encodeURIComponent(message)}`;  // Ganti nomor WhatsApp admin
+        window.open(whatsappUrl, '_blank');
+    }
+
+    // Jalankan saat DOM ready
+    document.addEventListener('DOMContentLoaded', () => {
+        renderCart();
+    });
+</script>
 </body>
 </html>
